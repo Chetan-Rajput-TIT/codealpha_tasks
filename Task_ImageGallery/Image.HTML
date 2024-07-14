@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: grey;
+        }
+        
+        .gallery-container {
+    position: relative;
+    max-width: 800px;
+    text-align: center;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.nav-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    user-select: none;
+}
+
+#prev-button {
+    left: 10px;
+}
+
+#next-button {
+    right: 10px;
+}
+
+.nav-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+    </style>
+</head>
+<body>
+    <div class="body">
+    <div class="gallery-container">
+        <div class="gallery">
+            <img id="current-image" src="https://via.placeholder.com/800x600" alt="Gallery Image">
+        </div>
+        <button class="nav-button" id="prev-button">&#10094;</button>
+        <button class="nav-button" id="next-button">&#10095;</button>
+    </div></div>
+    <script >const images = [
+        'https://images.pexels.com/photos/7583935/pexels-photo-7583935.jpeg?auto=compress&cs=tinysrgb&w=400',
+        'https://imgs.search.brave.com/g6nfeCsHA2WBciMYq31-XS-Px8AJ0hws8OB7T-jLYaM/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2FyZXN0cmVhbWRl/bnRhbC5jb20vZ2xv/YmFsYXNzZXRzL2Nv/bnRlbnQvZGlnaXRh/bC1kZW50aXN0LW1h/Z2F6aW5lL3ZvbHVt/ZS03L2RkNy13ZWIt/aW1hZ2VzNC1kci15/b3Jnb3YuanBn',
+        'https://imgs.search.brave.com/QuVRPcu-Yds4qM50PScUCLoSugkK98ptVwwOm9Domgc/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9idXJz/dC5zaG9waWZ5Y2Ru/LmNvbS9waG90b3Mv/cGhvdG8tb2YtYS1j/aXR5c2NhcGUtd2l0/aC1hLWZlcnJpcy13/aGVlbC5qcGc_d2lk/dGg9MTAwMCZmb3Jt/YXQ9cGpwZyZleGlm/PTAmaXB0Yz0w',
+        'https://imgs.search.brave.com/IUJgLSdJk7gGkiXhsjoevQ4vNnhfh-UgE6s-zuLF3xE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTA3/MTEwNDczNC9waG90/by93b21hbi1zaWxo/b3VldHRlLWF0LXN1/bnNldC1vbi1oaWxs/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz0zUHJDSGNsdFM0/VHR4VVhIeFQ5ckxY/ckcxNTRMcGY3MEJO/RFFma3lzUm5RPQ',
+        'https://imgs.search.brave.com/OoEMJBlcvCSGXngqi9vEmotFByxXeoYiczYvBySKEJo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTUx/ODg1NDgwNS9waG90/by9ibGFjay1tYWxl/LWRldmVsb3Blci10/aGlua2luZy1hbmQt/dHlwaW5nLW9uLWNv/bXB1dGVyLXN1cnJv/dW5kZWQtYnktYmln/LXNjcmVlbnMtc2hv/d2luZy1jb2Rpbmcu/d2VicD9iPTEmcz0x/NzA2NjdhJnc9MCZr/PTIwJmM9ay1QN0sy/cW9mZTFrTGhWQmsx/aWQ2X3ZNR25vcGhV/VUt3UU0yXzhFakJh/VT0'
+    ];
+    
+    let currentIndex = 0;
+    
+    const currentImage = document.getElementById('current-image');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    
+    function updateImage(index) {
+        currentImage.src = images[index];
+    }
+    
+    prevButton.addEventListener('click', () => {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        updateImage(currentIndex);
+    });
+    
+    nextButton.addEventListener('click', () => {
+        currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+        updateImage(currentIndex);
+    });
+    
+    updateImage(currentIndex);
+    </script>
+</body>
+</html>
